@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 import SavedList from './Movies/SavedList';
 import Movie from './Movies/Movie'
 import MovieList from './Movies/MovieList'
@@ -29,13 +29,17 @@ const App = () => {
   return (
     <div>
       <SavedList list={[ /* This is stretch */]} />
+      <div>
+    <Switch>
       
-<Route exact path="/"> <MovieList  movies = {movieList} />
-</Route>
-<Route  path="/movies/"> <Movie key={movieList.id} movies = {movieList} />
-</Route>
-
-
+      <Route  path="/movies/:id" component={Movie} >
+        <Movie movies = {movieList} />
+      </Route>
+      <Route  exact path="/"> 
+        <MovieList  movies = {movieList} />
+      </Route>
+    </Switch>
+</div>
     </div>
   );
 };
